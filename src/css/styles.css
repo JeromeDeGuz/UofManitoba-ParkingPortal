@@ -1,0 +1,479 @@
+/* ========================================= */
+/*               COLOR CONSTANTS             */
+/* ========================================= */
+:root {
+  --primary: #1b4571;
+  --secondary: #c4d2d6;
+  --important: #4562a6;
+  --card-bg: #ffffff;
+  --shadow-heavy: rgba(0, 0, 0, 1);
+  --shadow-medium: rgba(0, 0, 0, 0.25);
+  --shadow-light: rgba(0, 0, 0, 0.15);
+  --map-bg: rgb(128, 152, 156);
+}
+
+/* ========================================= */
+/*                 HEADER                    */
+/* ========================================= */
+header {
+  background-color: var(--primary);
+  color: white;
+  padding: 8px 2px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px var(--shadow-light);
+
+  /* NEW — full-width + flex layout */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 250px;
+  height: 56px;
+  box-sizing: border-box;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+  padding-right: 60px;
+  gap: 20px;
+}
+
+header h1 {
+  padding-left: 10px;
+}
+
+/* ========================================= */
+/*                LOGOUT BUTTON              */
+/* ========================================= */
+.logout-btn {
+  background-color: white;
+  color: rgb(0, 0, 0);
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 12px;
+}
+
+.logout-btn:hover {
+  background-color: #ef0909;
+  color: white;
+}
+
+/* ========================================= */
+/*                 LOT BAR                   */
+/* ========================================= */
+.lot-bar {
+  flex: 1;
+  min-width: 300px;
+  background-color: var(--card-bg);
+  border-radius: 15px;
+  box-shadow: 0 0 12px var(--shadow-light);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lot-dropdown-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.lot-dropdown {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: var(--primary);
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 4px 32px 4px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.lot-arrow {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  position: absolute;
+  right: 1px;
+}
+
+.lot-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* ========================================= */
+/*                   BODY                    */
+/* ========================================= */
+body {
+  position: relative;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--secondary);
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  filter: brightness(1.2) blur(2px); /* dim + soften */
+  z-index: -1; /* behind everything */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;  /* REMOVE bottom scroll */
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h2 {
+  margin-top: 0;
+  color: var(--primary);
+}
+
+/* ========================================= */
+/*                 LAYOUT                    */
+/* ========================================= */
+.container {
+  display: flex;
+  height: calc(100vh - 120px);
+  box-sizing: border-box;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* ========================================= */
+/*            SIDEBAR CARDS                  */
+/* ========================================= */
+
+.building-selector,
+.filters {
+  width: 250px;
+  background-color: var(--card-bg);
+  border: 1px solid #ddd;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  margin: 14px 0 0px 40px;
+  box-shadow: 0 0 15px var(--shadow-light);
+  height: fit-content;
+}
+
+.building-selector > div:first-child {
+    margin-bottom: 20px; /* consistent spacing */
+}
+
+/* Scrollable inside Filters */
+.scrollable {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-left: 15px;
+  padding-right: 25px;
+  margin-bottom: 15px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) #f2f2f2;
+}
+
+/* ========================================= */
+/*               FILTERS                     */
+/* ========================================= */
+.filters label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.filters label:hover .icon {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.filters .icon {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  box-sizing: border-box;
+  object-fit: contain;
+  opacity: 0.9;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  border-radius: 5px;
+}
+
+/* Accessible (blue) */
+.filters label:has(#accessible) .icon {
+  background-color: #3f8ad4; 
+  border: 1px solid #000000;
+}
+
+/* Electric (purple) */
+.filters label:has(#electric) .icon {
+  background-color: #c338ff;
+  border: 1px solid #000000;
+}
+
+/* Covered (yellow) */
+.filters label:has(#covered) .icon {
+  background-color: #FFC20A;
+  border: 1px solid #000000;
+}
+
+.filters input[type="checkbox"] {
+  transform: scale(1.9);
+  margin-right: 8px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+/* ========================================= */
+/*              RIGHT PANEL                  */
+/* ========================================= */
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 15px 40px 5px 0;
+  gap: 25px;
+}
+
+/* ========================================= */
+/*                 MAP AREA                  */
+/* ========================================= */
+.map-area {
+  flex: 1;
+  min-height: 550px;
+  position: relative;
+  background-color: var(--card-bg);
+  margin: 1px 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px var(--shadow-medium);
+}
+
+#map-frame {
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  right: 15px;
+  left: 15px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: var(--map-bg);
+}
+
+#map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ========================================= */
+/*            ACTIVE FILTERS BAR             */
+/* ========================================= */
+.active-filters {
+  position: absolute;
+  top: 25px;
+  left: 100px;
+  display: flex;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 8px 12px;
+  border-radius: 40px;
+  box-shadow: 0 2px 8px var(--shadow-heavy);
+  backdrop-filter: blur(3px);
+  z-index: 999;
+}
+
+.active-filters img {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  opacity: 1;
+}
+
+.active-filters.hidden {
+  display: none;
+}
+
+
+/* ========================================= */
+/*       Leaflet Map - Parking Lot Label     */
+/* ========================================= */
+.polygon-label {
+      background: none !important;
+      /* remove the white box */
+      border: none !important;
+      /* remove the border */
+      box-shadow: none !important;
+      /* remove subtle shadow */
+      padding: 0 !important;
+      /* remove inner padding */
+      margin: 0 !important;
+      /* remove outer margin */
+      color: black;
+      /* text color */
+      font-weight: bold;
+      font-size: 21px;
+      text-shadow: 1px 1px 2px white;
+      /* improves visibility */
+    }
+
+
+/* ========================================= */
+/*                MAP LEGEND                 */
+/* ========================================= */
+#map-legend-container {
+  position: absolute;
+  bottom: 35px;
+  left: 25px;
+  z-index: 900;
+  width: 150px;
+}
+
+#map-legend-button {
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px var(--shadow-heavy);
+  color: #333;
+  font-weight: bold;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  padding: 4px 8px;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+#map-legend-button .arrow {
+  font-size: 16px;
+}
+
+#map-legend {
+  display: none;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+}
+
+#map-legend.show {
+  display: block;
+}
+
+#map-legend ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#map-legend li {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  gap: 6px;
+}
+
+.map-legend-color {
+  width: 22px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+/* ========================================= */
+/*                INFO BUTTONS               */
+/* ========================================= */
+
+/* Shared button styling */
+.info-button-filters,
+.info-button-nearby {
+  background: none;
+  border: solid #1b4571 2px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  color: #1b4571;
+  padding: 4px 7px;
+  border-radius: 50%;
+}
+
+.info-button-filters:hover,
+.info-button-nearby:hover {
+  background-color: #3287e1;
+  color: white;
+}
+
+/* Shared popup style for BOTH popups */
+.info-popup-filters,
+.info-popup-nearby {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  transform: translateX(110%);
+  margin-top: 3px;
+
+  display: none;
+
+  background-color: #ffffff;
+  color: #333333;
+  white-space: nowrap;
+  z-index: 5000;
+
+  padding: 7px 14px;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 1.5;
+
+  list-style: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+.info-popup-filters.show,
+.info-popup-nearby.show {
+  display: block;
+}
+
+/* Remove bullet points from UL inside popups */
+.info-popup-filters ul,
+.info-popup-nearby ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.info-popup-filters li,
+.info-popup-nearby li {
+  margin: 4px 0;
+  font-weight: normal;
+}

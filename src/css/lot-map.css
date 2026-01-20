@@ -1,0 +1,354 @@
+#parking-overlay-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: none;
+}
+
+#parking-overlay-container.show{
+  display: flex;
+}
+
+#top-bar {
+  padding: 10px 20px;
+  background-color: #1b4571;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#top-bar h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.info-container {
+  position: relative;
+}
+#info-button {
+  background: none;
+  border: solid white 2px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  color: white;
+  padding: 4px 7px;
+  border-radius: 50%;
+}
+#info-button:hover {
+  background-color: #3287e1;
+}
+#info {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 3px;
+
+  display: none;
+
+  background-color: #ffffff;
+  color: #333333;
+  white-space: nowrap;
+  z-index: 1000;
+  padding: 7px 14px;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#info.show {
+  display: block;
+}
+
+.instructions ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.close-button-container {
+  display: flex;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  overflow: hidden;
+}
+#close-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 35px;
+  padding-block: 0px;
+}
+#close-button:hover {
+  background-color: #3287e1;
+}
+
+#lot-view {
+  position: relative;
+  flex-grow: 1;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.7);
+  flex: 1;
+  min-height: 0;
+}
+
+#parking-lot {
+  background-color: #dddddd;
+  border-radius: 10px;
+  width: min-content;
+  height: min-content;
+  display: grid;
+  grid-gap: 5px;
+  padding: 20px;
+}
+
+#legend-container {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1000;
+  width: 177px;
+}
+
+#legend-button {
+  background-color: #ffffff;
+  color: #333;
+  font-weight: bold;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#legend-container.open #legend-button {
+  border-bottom: 1px solid #838383;
+  border-top: 1px solid #838383;
+  border-radius: 0 0 5px 5px;
+}
+
+#legend-button .arrow {
+  font-weight: 100;
+  transform: scaleX(1.7);
+  position: relative;
+  top: 3px;
+  font-size: 20px;
+}
+
+#legend-container.open .arrow {
+  font-weight: 100;
+  transform: rotate(180deg) scaleX(1.7);
+  position: relative;
+  top: -3px;
+  font-size: 20px;
+}
+
+#legend {
+  display: none;
+  background-color: #ffffff;
+  color: #333;
+  padding: 15px;
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+  box-sizing: border-box;
+
+  position: absolute;
+  bottom: 35px;
+}
+
+#legend ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#legend li {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin-block: 7px;
+}
+
+#legend.show {
+  display: block;
+}
+
+#legend .spot {
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+  cursor: default;
+  pointer-events: none;
+}
+
+#legend .spot .accessible-icon {
+  width: 21px;
+  height: 21px;
+}
+
+#legend .spot .ev-icon {
+  width: 21px;
+  height: 21px;
+}
+
+#legend .spot .covered-icon {
+  width: 21px;
+  height: 21px;
+}
+
+.spot {
+  background-color: #ffffff;
+  border: 1px solid #696969;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.spot.empty {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  cursor: default;
+  pointer-events: none;
+}
+
+.spot span {
+  font-size: 7px;
+  text-align: center;
+  font-weight: normal;
+}
+
+.spot:hover {
+  background-color: #dddddd;
+}
+
+
+.spot.accessible {
+  background-color: #3f8ad4;
+  border-color: #010102;
+}
+
+.accessible-icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+}
+
+.spot.accessible:hover {
+  background-color: #3f8ad4;
+}
+
+.spot.ev {
+  background-color: #c338ff;
+  border-color: #000000;
+}
+
+.spot.ev:hover {
+  background-color: #d299ed;
+}
+
+.ev-icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+}
+
+.spot.covered {
+  background-color: #FFC20A;
+  border-color: #000000;
+}
+
+.spot.covered:hover {
+  background-color: #f6da86;
+}
+
+.covered-icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+}
+
+.spot.selected {
+  background-color: #92e195;
+  border-color: #000000;
+  border-width: 5px;
+  box-sizing: border-box 
+}
+
+.spot.selected:hover {
+  background-color: #7fc881;
+}
+
+.spot.occupied {
+  background-color: #e93431;
+  border-color: #000000;
+  cursor: not-allowed;
+}
+
+.spot.occupied:hover {
+  background-color: #fdbdc3;
+}
+
+
+#bottom-bar {
+  padding: 8px 16px;
+  background-color: #ffffff;
+  border-top: 1px solid #b6b6b6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+#bottom-information {
+  font-size: 15px;
+  color: #2f2f2f;
+  display: flex;
+  gap: 15px;
+}
+
+#buy-button {
+  background-color: #239129;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+}
+#buy-button:hover {
+  background-color: #1d7820;
+}

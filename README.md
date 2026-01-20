@@ -66,6 +66,10 @@ These practices help transform a traditionally frustrating campus process into a
 
 ## Getting Started
 
+To run this prototype remotely:
+
+**https://jeromedeguz.github.io/UofManitoba-ParkingPortal/**
+
 To run this prototype locally:
 
 1. **Clone the repo**

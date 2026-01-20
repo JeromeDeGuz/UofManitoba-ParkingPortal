@@ -92,18 +92,3 @@ To run this prototype locally:
 | ------- | ------------------------ | -------- |
 | Student | `student@myumanitoba.ca` | `1234`   |
 | Staff   | `staff@myumanitoba.ca`   | `abcd`   |
-
----
-
-
-## Future Enhancements (Optional)
-
-If extended, this project could incorporate:
-
-* Real API integration for live campus parking data
-* Authentication system with secure login
-* Dynamic visuals (maps, availability heatmaps)
-* Permit management workflows
-
----
-
